@@ -115,7 +115,9 @@ To solve the Reynolds equation use reyn_run.py
 
          #--------------------------------------------------------------------    
              if plots_on:
+             
                 solution.p_plot()
+                
                 solution.v_plot()
          #--------------------------------------------------------------------        
 
