@@ -114,8 +114,7 @@ To solve the Reynolds equation use reyn_run.py
     - set plots_on=True at the top of reyn_run
 
          #--------------------------------------------------------------------    
-            if plots_on:
-            
+             if plots_on:
                 solution.p_plot()
                 solution.v_plot()
          #--------------------------------------------------------------------        
