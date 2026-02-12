@@ -101,9 +101,9 @@ To solve the Reynolds equation use reyn_run.py
 
     C.) piecewise linear solver (PWL)
    
-        #--------------------------------------------------------------------    
+         #--------------------------------------------------------------------    
            solution = solver.pwl_schur_solve(N)
-        #--------------------------------------------------------------------
+         #--------------------------------------------------------------------
  
     --> see reyn_control.py, graphics.py, reyn_pressure.py, reyn_pressure_finDiff.py, 
         reyn_pressure_pwc.py, reyn_pressure_pwl.py, reyn_velocity.py
@@ -113,11 +113,11 @@ To solve the Reynolds equation use reyn_run.py
 
     - set plots_on=True at the top of reyn_run
 
-        #--------------------------------------------------------------------    
+         #--------------------------------------------------------------------    
             if plots_on:
                 solution.p_plot()
                 solution.v_plot()
-        #--------------------------------------------------------------------        
+         #--------------------------------------------------------------------        
 
 #------------------------------------------------------------------------------
 # STOKES SOLVER
