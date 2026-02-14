@@ -28,11 +28,11 @@ To solve the Reynolds equation use reyn_run.py
           
           #--------------------------------------------------------------------
             Example = examples.BFS_pwl
-            H = 2
-            h = 1
+            h_in = 2
+            h_out = 1
             delta = 1
             L = 16
-            args = [H,h,L,delta]
+            args = [h_in,h_out,L,delta]
           #--------------------------------------------------------------------
           
     C.) logistic step
