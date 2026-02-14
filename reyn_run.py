@@ -15,7 +15,7 @@ import reyn_solvers as solvers
 plots_on = True
 uv_on = False          # plot u(x,y) & v(x,y) & |(u,v)|
 inc_on = False         # plot ux + vy =? 0
-zoom_on =False        # plot a zoomed-in window, set location in reyn_solution.py
+zoom_on =False         # plot a zoomed-in window, set location in graphics.py
 
 #------------------------------------------------------------------------------
 ## Piecewise-linear examples 

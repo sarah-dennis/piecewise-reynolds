@@ -11,7 +11,7 @@ import stokes_control as control
 import stokes_examples as examples
 
 
-zoom_on=  False   
+zoom_on=  False    #set zoom location in graphics.py
 
 U=0
 Q=1
