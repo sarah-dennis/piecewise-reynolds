@@ -20,8 +20,8 @@ To solve the Reynolds equation use reyn_run.py
             h_inlet = 2
             h_outlet = 1
             l_inlet = 8
-            L_total = 16
-            args =  [h_inlet, h_outlet, l_inlet, L_total]
+            l_out = 8
+            args =  [h_inlet, h_outlet, l_inlet, l_out]
           #--------------------------------------------------------------------
     
     B.) piecewise linear height (regularized BFS)

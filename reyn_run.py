@@ -23,11 +23,11 @@ zoom_on =False        # plot a zoomed-in window, set location in reyn_solution.p
 #------------------------------------------------------------------------------
 
 Example = examples.BFS
-H=1 
-h=2
-l=8
+h_in=1 
+h_out=2
+l_in=8
 l_out=8
-args =  [h, H, l, l_out]
+args =  [h_in, h_out, l_in, l_out]
 
 
 # Example = examples.BFS_pwl
