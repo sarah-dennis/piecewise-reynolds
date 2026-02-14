@@ -75,7 +75,7 @@ To solve the Reynolds equation use reyn_run.py
 
 3. Initialize the Solver and grid scale (N)
 
-    - Solver: class with Reynolds, ELT, PLT solve methods
+    - Solver: class with Reynolds solve methods
     - N: grid scale (dx = 1/N)
     
           #--------------------------------------------------------------------    
