@@ -96,13 +96,13 @@ To solve the Reynolds equation use reyn_run.py
     B.) piecewise constant solver (PWC))
     
          #--------------------------------------------------------------------    
-            solution = solver.pwc_schur_solve(N)
+            solution = solver.pwc_solve(N)
          #--------------------------------------------------------------------
 
     C.) piecewise linear solver (PWL)
    
          #--------------------------------------------------------------------    
-           solution = solver.pwl_schur_solve(N)
+           solution = solver.pwl_solve(N)
          #--------------------------------------------------------------------
  
     --> see reyn_control.py, graphics.py, reyn_pressure.py, reyn_pressure_finDiff.py, 
