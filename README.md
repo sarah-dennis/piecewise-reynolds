@@ -234,6 +234,7 @@ To test the timing and convergence of the Reynolds FD, PWC & PWL, methods
 run the script reyn_piecewise_convg_timing.py
 
 To see linear time performance for PWL, the 2D PRESSURE MUST BE TURNED OFF
+
     1. Go to reyn_pressure.py
     2. In the Reyn_Pressure class, set self.2D_ps = None
-    Otherwise, self.2D_ps = self.make_2D_ps(height, ps_1D) sets p(x,y) = p(x) for 2D pressure plotting
+    Otherwise, self.2D_ps = self.make_2D_ps(height, ps_1D) sets p(x,y) = p(x) for 2D pressure plotting in quadratic time
