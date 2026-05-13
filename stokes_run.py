@@ -67,10 +67,10 @@ Example = examples.BFS_pwl
 #------------------------------------------------------------------------------
 solver = control.Stokes_Solver(Example, args, U, Q, Re, max_iters=500000)                
 
-N=10
+N=160
 
-solver.new_run(N) 
-# solver.load_run(N)
+# solver.new_run(N) 
+solver.load_run(N)
 
 # solver.load_scale(N,2*N) 
 # 
@@ -84,7 +84,7 @@ solver.new_run(N)
 # solver.load_plot(N, zoom=zoom_on)
 
 # ------------------------------------------------------------------------------
-solver.compare(args, U, Q, Re, 20,[40,80,160],320)
+# solver.compare(args, U, Q, Re, 20,[40,80,160],320)
 
 
 
