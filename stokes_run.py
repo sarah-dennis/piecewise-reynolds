@@ -34,7 +34,7 @@ Re=0
 H=2
 h=1
 L=16
-delta= 1
+delta= 2
 args = [H, h, L, delta]
 Example = examples.BFS_pwl
 
@@ -70,7 +70,7 @@ solver = control.Stokes_Solver(Example, args, U, Q, Re, max_iters=500000)
 N=160
 
 # solver.new_run(N) 
-solver.load_run(N)
+# solver.load_run(N)
 
 # solver.load_scale(N,2*N) 
 # 
@@ -81,7 +81,7 @@ solver.load_run(N)
 # solver.new_run_many(N, 2, 4)  
 # solver.load_run_new_many(N, 2,3)
 
-# solver.load_plot(N, zoom=zoom_on)
+solver.load_plot(N, zoom=zoom_on)
 
 # ------------------------------------------------------------------------------
 # solver.compare(args, U, Q, Re, 20,[40,80,160],320)

@@ -250,8 +250,9 @@ def plot_stream_heat(vx, vy, xs, ys, color_map, title, ax_labels, vmin=0, vmax=v
     pp.xlabel(ax_labels[1])
     pp.ylabel(ax_labels[2])
     
-    pp.ylim(y_start, y_stop)
-    pp.xlim(x_start, x_stop)
+    #TODO: setlims
+    # pp.ylim(y_start, y_stop)
+    # pp.xlim(x_start, x_stop)
     
     ax.set_aspect('equal')
 
@@ -287,9 +288,9 @@ def plot_contour_mesh(zs, xs, ys, title, labels, vmin=p_min, vmax=p_max, log_cma
     pp.title(title, fontweight="bold")
     pp.xlabel(labels[1])
     pp.ylabel(labels[2])
-
-    pp.ylim(y_start, y_stop)
-    pp.xlim(x_start, x_stop)
+    #TODO: set lims
+    # pp.ylim(y_start, y_stop)
+    # pp.xlim(x_start, x_stop)
     # pp.minorticks_on()
     ax = pp.gca()
     ax.set_aspect('equal')    
