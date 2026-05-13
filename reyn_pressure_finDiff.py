@@ -6,6 +6,7 @@ Created on Tue Jun 21 09:43:24 2022
 @author: sarahdennis
 """
 import numpy as np
+import scipy as sp
 import reyn_boundary as bc
 
 

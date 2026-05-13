@@ -22,7 +22,7 @@ Example = examples.Sinusoid
 H=1
 delta = 1/2
 k = 1 #* 2pi
-L=2
+L=16
 args = [H, delta, k, L]
 
 
@@ -42,11 +42,12 @@ solver = solvers.Reynolds_Solver(Example, BC, args)
 
 #------------------------------------------------------------------------------
 
-tests = 8                                                                                                                                                                                                                                     
+tests = 8                                                                                                                                                                                                                                
 
 pwc_schur_times= np.zeros(tests)
 pwl_schur_times=np.zeros(tests)
 fd_times= np.zeros(tests)
+fd_bicg_times= np.zeros(tests)
 
 dP_err_fd= np.zeros(tests)
 dP_err_pwc= np.zeros(tests)
@@ -64,15 +65,19 @@ for k in range(tests):
     Ns[k]=N
     print(f'k={k+1:d} of {tests:d}, N={N:d}')
     fd_solution = solver.fd_solve(N)
-    pwc_solution = solver.pwc_schur_solve(N)
-    pwl_solution = solver.pwl_schur_solve(N)
+
+    pwc_solution = solver.pwc_solve(N)
+    pwl_solution = solver.pwl_solve(N)
 
     exact_solution = solver.exact_sinusoid_sol(N)
     
 
+
     fd_times[k] = fd_solution.time
+    
     pwc_schur_times[k] = pwc_solution.time
     pwl_schur_times[k] = pwl_solution.time
+    
     
     # exact sol dP = 0
     dP_err_fd[k] = abs(fd_solution.dP) 
@@ -86,7 +91,7 @@ for k in range(tests):
 
 
 #------------------------------------------------------------------------------        
-graphics.plot_2D_multi([fd_times, pwc_schur_times, pwl_schur_times], Ns, 'Run Time', ['FD', 'PWC', 'PWL'], ['$1/\Delta x$', 'run time (s)'], loc='left')
+graphics.plot_2D_multi([fd_times, pwc_schur_times, pwl_schur_times], Ns, 'Run Time', ['FD LU', 'PWC', 'PWL'], ['$1/\Delta x$', 'run time (s)'], loc='left')
 
 graphics.plot_2D(pwl_schur_times, Ns, 'Run Time for PWL', ['$1/\Delta x$', 'run time (s)'], color='forestgreen', marker='s')
 

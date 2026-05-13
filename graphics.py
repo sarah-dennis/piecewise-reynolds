@@ -24,16 +24,16 @@ y_stop = y_start + leny
 #---------LEGEND---------------------------------------------------------------
 
 vel_max = 5
-p_min= 0
-p_max = 120
+p_min= 60
+p_max = 110
 
 # colour_bar_scale=0.015 # for very long figures, H=1.25, L=4
-# colour_bar_scale=0.024 # for long figures like H=2, L=4
+colour_bar_scale=0.024 # for long figures like H=2, L=4
 # colour_bar_scale=0.05 # for almost square figures like H=2.75, L=4
-colour_bar_scale=0.1 # for tall figures like H=4, L=2
+# colour_bar_scale=0.1 # for tall figures like H=4, L=2
 
 
-colour_bar_pad = 0.02
+colour_bar_pad = 0.05
 
 #------------------------------------------------------------------------------
 
@@ -250,14 +250,14 @@ def plot_stream_heat(vx, vy, xs, ys, color_map, title, ax_labels, vmin=0, vmax=v
     pp.xlabel(ax_labels[1])
     pp.ylabel(ax_labels[2])
     
-    # pp.ylim(y_start, y_stop)
-    # pp.xlim(x_start, x_stop)
+    pp.ylim(y_start, y_stop)
+    pp.xlim(x_start, x_stop)
     
     ax.set_aspect('equal')
 
     # ax.tick_params(which='minor', top=True, right=True)
     # ax.tick_params(which='major', top=True, right=True)
-    pp.minorticks_on()
+    # pp.minorticks_on()
     pp.show()
        
 #------------------------------------------------------------------------------       
@@ -288,9 +288,9 @@ def plot_contour_mesh(zs, xs, ys, title, labels, vmin=p_min, vmax=p_max, log_cma
     pp.xlabel(labels[1])
     pp.ylabel(labels[2])
 
-    # pp.ylim(y_start, y_stop)
-    # pp.xlim(x_start, x_stop)
-    pp.minorticks_on()
+    pp.ylim(y_start, y_stop)
+    pp.xlim(x_start, x_stop)
+    # pp.minorticks_on()
     ax = pp.gca()
     ax.set_aspect('equal')    
     # ax.set_ylim(y_lim)

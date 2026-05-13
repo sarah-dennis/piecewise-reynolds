@@ -8,6 +8,7 @@ Created on Thu Dec  5 13:28:42 2024
 import reyn_pressure_finDiff as fd
 import reyn_pressure_pwl as pwl
 import reyn_pressure_pwc as pwc
+import time
 
 import numpy as np
 class Pressure:
@@ -19,12 +20,13 @@ class Pressure:
         self.ps_2D = ps_2D 
     
     def get_dP(self, height):
-        if self.ps_2D is None:
-            dP =  self.ps_1D[0] - self.ps_1D[-1]
+        dP = self.ps_1D[0] - self.ps_1D[-1]
+        # if self.ps_2D is None:
+        #     dP =  self.ps_1D[0] - self.ps_1D[-1]
 
-        else:
-            ps_2D = np.nan_to_num(self.ps_2D)
-            dP = (sum(ps_2D[:,0])/height.hs[0] - sum(ps_2D[:,-1])/height.hs[-1])*height.dy
+        # else:
+        #     ps_2D = np.nan_to_num(self.ps_2D)
+            # dP = (sum(ps_2D[:,0])/height.hs[0] - sum(ps_2D[:,-1])/height.hs[-1])*height.dy
         return dP
 
 class Reyn_Pressure(Pressure):
@@ -52,16 +54,14 @@ class Reyn_Pressure(Pressure):
                     
 class FinDiff_ReynPressure(Reyn_Pressure):
     def __init__(self, height, BC):
+       
         ps_1D = fd.fd_solve(height, BC)
-        
+     
         super().__init__(height, ps_1D)
-
-
+        
 class PwlGMRes_ReynPressure(Reyn_Pressure):
     def __init__(self, height, BC):
-            
 
-            
         ps_1D = pwl.gmres_solve(height, BC)
         super().__init__(height,ps_1D)
         

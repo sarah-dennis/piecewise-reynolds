@@ -15,27 +15,27 @@ import reyn_solvers as solvers
 plots_on = True
 uv_on = False          # plot u(x,y) & v(x,y) & |(u,v)|
 inc_on = False         # plot ux + vy =? 0
-zoom_on =False         # plot a zoomed-in window, set location in graphics.py
+zoom_on =True         # plot a zoomed-in window, set location in graphics.py
 
 #------------------------------------------------------------------------------
 ## Piecewise-linear examples 
 ##       (analytic or finite difference solution)
 #------------------------------------------------------------------------------
 
-Example = examples.BFS
-h_in=1 
-h_out=2
-l_in=8
-l_out=8
-args =  [h_in, h_out, l_in, l_out]
+# Example = examples.BFS
+# h_in=2
+# h_out=1
+# l_in=8
+# l_out=8
+# args =  [h_in, h_out, l_in, l_out]
 
 
-# Example = examples.BFS_pwl
-# H_in = 2
-# H_out =1
-# delta = 1
-# L =16
-# args = [H_in,H_out,L,delta]
+Example = examples.BFS_pwl
+H_in = 2
+H_out =1
+delta =1/8
+L =16
+args = [H_in,H_out,L,delta]
 
 
 #------------------------------------------------------------------------------
@@ -58,12 +58,12 @@ args =  [h_in, h_out, l_in, l_out]
 # args = [H, delta, k, l, L]
 
 
-Example = examples.Logistic
-delta = 8 # max slope: delta*(H-h)/4
-H = 2     # outlet height
-h = 1       # inlet height
-L = 8     # total length
-args = [ H, h, L, delta]
+# Example = examples.Logistic
+# delta = 32 # max slope: delta*(H-h)/4
+# H = 2    # inlet height
+# h = 1       # outlet height
+# L = 16     # total length
+# args = [ H, h, L, delta]
 
 
 #------------------------------------------------------------------------------
@@ -88,15 +88,15 @@ solver = solvers.Reynolds_Solver(Example, BC, args)
 #------------------------------------------------------------------------------
 # solution methods (plots  and returns pressure, velocity )
 
-N = 100
-# solution = solver.fd_solve(N)
+N =320
+solution = solver.fd_solve(N)
 # 
 # solution = solver.pwc_solve(N)
 
 # if __name__ == '__main__':
 #     solution = solver.pwc_parallel_solve(N)
 
-solution = solver.pwl_solve(N)
+# solution = solver.pwl_solve(N)
 
 # solution = solver.pwl_gmres_solve(N)
 
