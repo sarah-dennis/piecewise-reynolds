@@ -31,29 +31,29 @@ Re=0
 # Example = examples.BFS
 
 #------------------------------------------------------------------------------
-H=2
-h=1
-L=16
-delta= 2
-args = [H, h, L, delta]
-Example = examples.BFS_pwl
-
-#------------------------------------------------------------------------------
 # H=2
 # h=1
 # L=16
-# delta = 32 #slope: -delta*(H-h)/4
+# delta= 1
 # args = [H, h, L, delta]
-# Example = examples.Logistic
+# Example = examples.BFS_pwl
 
 #------------------------------------------------------------------------------
-# H = 2
-# delta = 1/4
-# k = 2 #int 
-# l = 1
-# L = 8
-# args = [H, delta, k,  l, L]
-# Example = examples.Sinusoid
+H=2
+h=1
+L=16
+delta = 32 #slope: -delta*(H-h)/4
+args = [H, h, L, delta]
+Example = examples.Logistic
+
+#------------------------------------------------------------------------------
+H = 1
+delta = 1/4
+k = 2 #int 
+l = 1
+L = 8
+args = [H, delta, k,  l, L]
+Example = examples.Sinusoid
 
 #------------------------------------------------------------------------------
 # l=7
@@ -67,9 +67,9 @@ Example = examples.BFS_pwl
 #------------------------------------------------------------------------------
 solver = control.Stokes_Solver(Example, args, U, Q, Re, max_iters=500000)                
 
-N=160
+N=20
 
-# solver.new_run(N) 
+solver.new_run(N) 
 # solver.load_run(N)
 
 # solver.load_scale(N,2*N) 
@@ -84,7 +84,7 @@ N=160
 solver.load_plot(N, zoom=zoom_on)
 
 # ------------------------------------------------------------------------------
-# solver.compare(args, U, Q, Re, 20,[40,80,160],320)
+# solver.compare(args, U, Q, Re, 10,[20,40,80],160)#],320)
 
 
 

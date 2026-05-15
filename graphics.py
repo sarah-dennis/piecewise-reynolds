@@ -14,8 +14,10 @@ from matplotlib import patches
 
 # zoom to trim pipe length ((change leny to max h))
 lenx = 4
-leny = 2
-x_start = 6
+# leny = 2
+leny=1.5
+# x_start = 6
+x_start=-2
 y_start = 0
 #----------
 x_stop= x_start + lenx
@@ -43,7 +45,7 @@ n_contours = 100
 contour_width = 0.25
 
 stream_width = 1
-stream_density=[2,1]
+stream_density=[1.9,1]
 line_width = 1.5
 
 linthresh = 1e-8
@@ -251,8 +253,8 @@ def plot_stream_heat(vx, vy, xs, ys, color_map, title, ax_labels, vmin=0, vmax=v
     pp.ylabel(ax_labels[2])
     
     #TODO: setlims
-    # pp.ylim(y_start, y_stop)
-    # pp.xlim(x_start, x_stop)
+    pp.ylim(y_start, y_stop)
+    pp.xlim(x_start, x_stop)
     
     ax.set_aspect('equal')
 
@@ -288,9 +290,11 @@ def plot_contour_mesh(zs, xs, ys, title, labels, vmin=p_min, vmax=p_max, log_cma
     pp.title(title, fontweight="bold")
     pp.xlabel(labels[1])
     pp.ylabel(labels[2])
+    
     #TODO: set lims
-    # pp.ylim(y_start, y_stop)
-    # pp.xlim(x_start, x_stop)
+    pp.ylim(y_start, y_stop)
+    pp.xlim(x_start, x_stop)
+    
     # pp.minorticks_on()
     ax = pp.gca()
     ax.set_aspect('equal')    

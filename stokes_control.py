@@ -141,7 +141,7 @@ class Stokes_Solver:
     def compare(self, args, U, Q, Re, N_min, Ns, N_max,p_err=False): # grid convergence (multiple grid sizes of same example)
         
         l1_errs, l2_errs, inf_errs, cnvg_rates, ex_min = cnvg.stokes_cnvg_self(self.Example, args, U, Q, Re, N_min, Ns, N_max,p_err)
-        title = "Iterative Grid Error in Stream $\psi$ at $N_{max}=%d$"%(N_max)
+        title = "Iterative Grid Error in $\psi$ at $N_{max}=%d$"%(N_max)
         ax_labels = ["$N$", "$||\psi _{N^{*}} - \psi_{N}||_p$"]
         leg_labels = ['$L^1$', '$L^2$','$L^\infty$']
         

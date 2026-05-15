@@ -36,6 +36,7 @@ class Reyn_Pressure(Pressure):
         # TODO: if running timing, set ps_2D = None
         # ps_2D = None 
         
+        
         super().__init__(ps_1D, ps_2D)
         
     def make_2D_ps(self, height, ps_1D): # p(x,y) = p(x) 
