@@ -14,9 +14,9 @@ from matplotlib import patches
 
 # zoom to trim pipe length ((change leny to max h))
 lenx = 4
-# leny = 2
-leny=1.5
-# x_start = 6
+leny = 2
+# leny=1.25
+x_start = 6
 x_start=-2
 y_start = 0
 #----------
@@ -26,8 +26,8 @@ y_stop = y_start + leny
 #---------LEGEND---------------------------------------------------------------
 
 vel_max = 5
-p_min= 60
-p_max = 110
+p_min= 0
+p_max = 50
 
 # colour_bar_scale=0.015 # for very long figures, H=1.25, L=4
 colour_bar_scale=0.024 # for long figures like H=2, L=4
@@ -45,7 +45,7 @@ n_contours = 100
 contour_width = 0.25
 
 stream_width = 1
-stream_density=[1.9,1]
+stream_density=[3,1]
 line_width = 1.5
 
 linthresh = 1e-8
@@ -184,8 +184,9 @@ def plot_log_multi(fs, xs, title, f_labels, ax_labels, linthresh=linthresh, bigO
     
     # reference lines
     if bigO_on:
-        O1 = 1
-        O2 = 1
+        #TODO
+        O1 = 1/2
+        O2 = O1
         ax.plot(xs, [O1*x**-1 for x in xs], label="$\mathcal{O}(\Delta x)$", color='darkgrey')    
         ax.plot(xs, [O2*x**-2 for x in xs], label="$\mathcal{O}(\Delta x^2)$", color='k')
 
@@ -253,8 +254,8 @@ def plot_stream_heat(vx, vy, xs, ys, color_map, title, ax_labels, vmin=0, vmax=v
     pp.ylabel(ax_labels[2])
     
     #TODO: setlims
-    pp.ylim(y_start, y_stop)
-    pp.xlim(x_start, x_stop)
+    pp.ylim(ys[0], ys[-1])
+    pp.xlim(xs[0], xs[-1])
     
     ax.set_aspect('equal')
 
@@ -292,8 +293,8 @@ def plot_contour_mesh(zs, xs, ys, title, labels, vmin=p_min, vmax=p_max, log_cma
     pp.ylabel(labels[2])
     
     #TODO: set lims
-    pp.ylim(y_start, y_stop)
-    pp.xlim(x_start, x_stop)
+    pp.ylim(ys[0], ys[-1])
+    pp.xlim(xs[0], xs[-1])
     
     # pp.minorticks_on()
     ax = pp.gca()
@@ -308,11 +309,14 @@ def grid_zoom_2D(grid, ex):
     i_stop = int((x_stop - ex.x0)/ex.dx)
     j_start = int((y_start - ex.y0)/ex.dy)
     j_stop = int((y_stop - ex.y0)/ex.dy)
+    
     i_max = int((ex.xf - ex.x0)/ex.dx)
     j_max = int((ex.yf - ex.y0)/ex.dy)
+
     if i_start < 0 or j_start < 0 or i_stop > i_max or j_stop > j_max or i_start > i_stop or j_start > j_stop:
         raise Exception('graphics zoom window out of bounds')
-    return grid[j_start:j_stop,i_start:i_stop]
+        
+    return grid[j_start:j_stop+1,i_start:i_stop+1]
 
 def grid_zoom_1D(grid_x, grid_y, ex):
     
@@ -324,5 +328,5 @@ def grid_zoom_1D(grid_x, grid_y, ex):
     j_max = int((ex.yf - ex.y0)/ex.dy)
     if i_start < 0 or j_start < 0 or i_stop > i_max or j_stop > j_max or i_start > i_stop or j_start > j_stop:
         raise Exception('graphics zoom window out of bounds')
-    return grid_x[i_start:i_stop], grid_y[j_start:j_stop]
+    return grid_x[i_start:i_stop+1], grid_y[j_start:j_stop+1]
         

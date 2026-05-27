@@ -25,11 +25,10 @@ def read_stokes(filename, nm):
             u[i] = float(ui)
             v[i] = float(vi)
             psi[i] = float(psii)
-        cnvg_err = int(next(reader)[0])
         file.close()
-    return u, v, psi, cnvg_err
+    return u, v, psi
 
-def write_stokes(dmn, u, v, psi, cnvg_err):
+def write_stokes(dmn, u, v, psi):
     nm = dmn.Nx * dmn.Ny
     filename = dmn.filestr + ".csv"
     Path(dmn.dirstr).mkdir(parents=True, exist_ok=True)
@@ -38,12 +37,9 @@ def write_stokes(dmn, u, v, psi, cnvg_err):
         for i in range(nm):
             writer.writerow([u[i], v[i], psi[i]])
         
-        writer.writerow([cnvg_err])
         file.close()    
 
-
-    
-    
+     
     
     
     

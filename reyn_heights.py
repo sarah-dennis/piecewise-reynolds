@@ -229,14 +229,14 @@ class BumpHeight(Height):
         return self.H*(1-(self.lam/2)*(1+np.cos(np.pi*x/self.x_scale)))-(self.H-self.h0)
    
 class LogisticHeight(Height):
-    def __init__(self, x0, xf, N, H, h, center, delta, filestr):
+    def __init__(self, x0, xf, N, H_in, H_out, center, delta, filestr):
        
         Nx = (xf-x0)*N + 1
         dx = 1/N
-        self.h = h
-        self.H = H
+        self.H_out = H_out
+        self.H_in = H_in
         self.delta = delta #slope = delta*(H-h)/4
-        self.center = center
+        self.l = center
         xs = np.asarray([x0 + i*dx for i in range(Nx)])
         hs = np.asarray([self.h_fun(x) for x in xs])  
         y0 = 0
@@ -247,7 +247,7 @@ class LogisticHeight(Height):
 
     def h_fun(self, x):
         
-        return (self.h + (self.H-self.h) / ( 1 + np.exp(self.delta*(x-self.center))))  
+        return (self.H_in + (self.H_out-self.H_in) / ( 1 + np.exp(self.delta*(self.l-x))))  
 
 #------------------------------------------------------------------------------    
 class CircleHeight(Height):

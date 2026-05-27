@@ -31,10 +31,12 @@ class Pressure:
 
 class Reyn_Pressure(Pressure):
     def __init__(self, height, ps_1D):
-        ps_2D = self.make_2D_ps(height, ps_1D)
-        
+                
         # TODO: if running timing, set ps_2D = None
-        # ps_2D = None 
+        
+        # ps_2D = self.make_2D_ps(height, ps_1D)
+
+        ps_2D = None 
         
         
         super().__init__(ps_1D, ps_2D)
@@ -53,10 +55,18 @@ class Reyn_Pressure(Pressure):
                 
          return ps_2D     
                     
-class FinDiff_ReynPressure(Reyn_Pressure):
+class FD_LU_ReynPressure(Reyn_Pressure):
     def __init__(self, height, BC):
        
-        ps_1D = fd.fd_solve(height, BC)
+        ps_1D = fd.lu_solve(height, BC)
+       
+     
+        super().__init__(height, ps_1D)
+        
+class FD_biCG_ReynPressure(Reyn_Pressure):
+    def __init__(self, height, BC):
+       
+        ps_1D = fd.bicg_solve(height, BC)
      
         super().__init__(height, ps_1D)
         

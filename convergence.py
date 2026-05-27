@@ -13,7 +13,7 @@ def stokes_cnvg_self(Ex, args, U, Q, Re, N_min, Ns, N_max, p_err=True):
     ex_max = Ex(args, U, Q, Re, N_max)
     size=ex_min.Ny*ex_min.Nx
     # Load max grid for 'true' values
-    u_max, v_max, psi_max, past_iters = rw.read_stokes(ex_max.filestr+".csv", ex_max.Nx * ex_max.Ny)
+    u_max, v_max, psi_max  = rw.read_stokes(ex_max.filestr+".csv", ex_max.Nx * ex_max.Ny)
     psi_max = psi_max.reshape((ex_max.Ny,ex_max.Nx))
 
 
@@ -48,7 +48,7 @@ def stokes_cnvg_self(Ex, args, U, Q, Re, N_min, Ns, N_max, p_err=True):
             mult = int(Ns[n-1]/N_min)
             
             
-        u_n, v_n, psi_n, past_iters = rw.read_stokes(ex_n.filestr+".csv", ex_n.Nx * ex_n.Ny)
+        u_n, v_n, psi_n = rw.read_stokes(ex_n.filestr+".csv", ex_n.Nx * ex_n.Ny)
         psi_n=psi_n.reshape((ex_n.Ny, ex_n.Nx))
 
         if p_err:

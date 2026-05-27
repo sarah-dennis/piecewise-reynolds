@@ -23,14 +23,14 @@ class Reynolds_Solver:
         self.BC = BC        
         
 #----------------------------------------------------------------------------------
-    def fd_solve(self, N):
+    def fd_lu_solve(self, N):
         solver_title = "Reynolds"
         
         height = self.Example(self.args, N)
 
         t0 = time()
         height.hxs = dm.center_diff(height.hs, height.Nx, height.dx)
-        pressure = rp.FinDiff_ReynPressure(height, self.BC)
+        pressure = rp.FD_LU_ReynPressure(height, self.BC)
         tf = time()
             
         velocity = rv.Reyn_Velocity(height, self.BC, pressure)
@@ -39,7 +39,26 @@ class Reynolds_Solver:
         solution = Reyn_Solution(height, self.BC, pressure, velocity, solver_title, t)
 
         return solution
-   
+          
+       
+#----------------------------------------------------------------------------------
+    def fd_bicg_solve(self, N):
+        solver_title = "Reynolds"
+        
+        height = self.Example(self.args, N)
+
+        t0 = time()
+        height.hxs = dm.center_diff(height.hs, height.Nx, height.dx)
+        pressure = rp.FD_biCG_ReynPressure(height, self.BC)
+        tf = time()
+            
+        velocity = rv.Reyn_Velocity(height, self.BC, pressure)
+        t = tf-t0
+        
+        solution = Reyn_Solution(height, self.BC, pressure, velocity, solver_title, t)
+
+        return solution
+    
 #----------------------------------------------------------------------------------
 #---------------------------------Piecewise----------------------------------------
 #----------------------------------------------------------------------------------

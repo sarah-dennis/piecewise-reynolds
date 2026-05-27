@@ -6,17 +6,19 @@ Created on Fri May 24 08:49:45 2024
 """
 import numpy as np
 import time
+from datetime import datetime as dt
 import readwrite as rw
 from scipy.sparse import csc_matrix
 from scipy.sparse.linalg import splu
 
-def run_spLU(ex, u, v, old_psi, iters, past_iters, error_mod, write_mod, err_tol):
-    print("file: %s"%ex.filestr)
+def run_spLU(ex, u, v, old_psi, iters, error_mod, write_mod, err_tol):
+    print("Example: %s"%ex.namestr)
     t0 = time.time() 
     M = Dpsi_cscmatrixBuild(ex)
     LU = splu(M)
     t_k0 = time.time()
-    print("N=%d  build-time %.2fs"%(ex.N, t_k0-t0))
+    t_k_g0=t_k0
+    print("N=%d  build-time: %.2fs, now: %s"%(ex.N, t_k0-t0,dt.now().strftime("%X")))
     max_err = 1
     for k in range(iters): 
 
@@ -29,12 +31,18 @@ def run_spLU(ex, u, v, old_psi, iters, past_iters, error_mod, write_mod, err_tol
 
         if k % error_mod == 0: 
             max_err = np.max(np.abs(old_psi - psi))
-            print("    k=%d  error: %.2e"%(k, max_err))
+            t_k_gf = time.time()
+            group_iter_time=(t_k_gf-t_k_g0)
+            if k == 0:
+                print("    k=%d  error: %.2e, time: %.2fs"%(k,max_err, group_iter_time))
+            else:
+                print("    k=%d  error: %.2e, group time: %.2fmin"%(k,max_err, group_iter_time/60))
+            t_k_g0=t_k_gf
             if max_err < err_tol:
                 break
 
         if k % write_mod == 0:
-            rw.write_stokes(ex, u, v, psi, k+1+past_iters)
+            rw.write_stokes(ex, u, v, psi)
             
         old_psi = psi
     t_kf = time.time()

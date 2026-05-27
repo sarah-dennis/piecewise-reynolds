@@ -60,7 +60,7 @@ class Reyn_Solution:
             paramstr = "$Q=%.2f$, $U=%.1f$, $\Delta p=%.2f$"%(self.Q, self.BC.U, self.dP)
         
         v_title = self.solver_str+ '\n' + paramstr
-        v_ax_labels =  ['$|(  u,  v)|_2$','$x$', '$y$']  
+        v_ax_labels =  ['$||(  u,  v)||_2$','$x$', '$y$']  
         uv_mag = np.sqrt((self.velocity.u)**2 + (self.velocity.v)**2)
         
 

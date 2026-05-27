@@ -93,7 +93,7 @@ def gmres_solve(height, BC):
 
     rhs = make_rhs(height, BC)
     linOp = pwlLinOp(height,BC)
-    sol_coefs, exit_code = gmres(linOp, rhs, rtol=1e-8)
+    sol_coefs, exit_code = gmres(linOp, rhs)
         
     if exit_code != 0:
         raise Exception('gmres did not converge')

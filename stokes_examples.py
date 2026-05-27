@@ -28,7 +28,7 @@ class BFS_pwl(PWLinear):
         x0 = 0
         xf = L
         y0 = 0
-        yf = H
+        yf = max(H,h)
         
         x_peaks = [x0, (L-delta)/2, L/2, (L+delta)/2, xf]
         
@@ -38,11 +38,12 @@ class BFS_pwl(PWLinear):
 
 class Logistic(PWLinear):
     def __init__(self,args, U, Q, Re, N):
-        H, h, L, delta = args
+        H_in, H_out, L, delta = args
         self.delta = delta
-        self.h = h
-        self.H = H
-        self.center = L//2
+        self.H_out = H_out
+        self.H_in = H_in
+        self.l = L/2
+        # self.center = L//2
 
         x0 = 0
         xf = L
@@ -50,18 +51,18 @@ class Logistic(PWLinear):
         x_peaks = [x0 + i/N for i in range (int(1 + L*N))]
         
         y0 = 0
-        yf = max(H,h)
+        yf = max(H_in,H_out)
         y_peaks_L = [0] + [self.h_fun(x) for x in x_peaks[:-1]]
         y_peaks_R =  [self.h_fun(x) for x in x_peaks[1:]] + [0]
 
         y_peaks = [[y_L, y_R] for y_L,y_R in np.stack((y_peaks_L,y_peaks_R), axis=1)] 
 
         
-        namestr= f'logistic_H{H}L{L}d{delta}_U{U}_Q{Q}_Re{Re}'
+        namestr= f'logistic_Hin{H_in}Hout{H_out}L{L}d{delta}_U{U}_Q{Q}_Re{Re}'
         super().__init__(x0, xf, y0, yf, N, U, Q, Re,namestr, x_peaks, y_peaks)   
 
     def h_fun(self, x):
-        return self.h + (self.H-self.h) / ( 1 + np.exp(self.delta*(x-self.center)))
+        return self.H_in + (self.H_out-self.H_in) / ( 1 + np.exp(self.delta*(self.l-x)))
      
 class Sinusoid(PWLinear): #aka sinusoid 2 in reynolds
     def __init__(self, args, U, Q, Re, N):

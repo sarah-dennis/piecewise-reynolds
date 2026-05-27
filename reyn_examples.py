@@ -55,12 +55,9 @@ class Logistic(LogisticHeight):
     def __init__(self, args, N):
         H_in, H_out, L, delta = args
 
-        # x0 = -L//2
-        # xf = L//2
-        # center = 0
         x0 = 0
         xf = L
-        center = L//2
+        center = L/2
         namestr = '' #f'Logistic{delta:.2f}H{H:.2f}'
         super().__init__(x0, xf, N, H_in, H_out, center, delta, namestr)
 
