@@ -23,12 +23,12 @@ Re=0
 
 
 #------------------------------------------------------------------------------
-# h_in = 1
-# h_out = 2
-# l_in = 8
-# l_out=8
-# args = [h_in, h_out, l_in, l_out]
-# Example = examples.BFS
+h_in = 1
+h_out = 2
+l_in = 8
+l_out=8
+args = [h_in, h_out, l_in, l_out]
+Example = examples.BFS
 
 #------------------------------------------------------------------------------
 # h_in=1
@@ -49,14 +49,14 @@ Re=0
 #------------------------------------------------------------------------------
 
 
-H=1.5       # equilibrium H
-delta = 1/3 # amplitude delta*H
-l = 1       # texture length 2l
-k = 2       # period k * pi on length 2l
-L=8         # total length 2L
-args = [H, delta, k, l, L]
+# H=1.5       # equilibrium H
+# delta = 1/3 # amplitude delta*H
+# l = 1       # texture length 2l
+# k = 2       # period k * pi on length 2l
+# L=8         # total length 2L
+# args = [H, delta, k, l, L]
 
-Example = examples.Sinusoid
+# Example = examples.Sinusoid
 
 #------------------------------------------------------------------------------
 # l=7

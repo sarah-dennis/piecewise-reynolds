@@ -144,7 +144,7 @@ class Stokes_Solver:
         l1_errs, l2_errs, inf_errs, cnvg_rates, ex_min = cnvg.stokes_cnvg_self(self.Example, args, U, Q, Re, N_min, Ns, N_max,p_err)
         title = "Convergence in $\psi$, $N_{max}=%d$"%(N_max)
         ax_labels = ["$N=1/\Delta x$", "$||\psi _{N^{*}} - \psi_{N}||_p$"]
-        leg_labels = ['$\mathscr{l}^1$', '$\mathscr{l}^2$','$\mathscr{l}^\infty$']
+        leg_labels = ['$L^1$', '$L^2$','$L^\infty$']
         
         graphics.plot_log_multi([l1_errs, l2_errs, inf_errs], [N_min]+Ns, title, leg_labels, ax_labels,bigO_on=True,loc='upper' )
 

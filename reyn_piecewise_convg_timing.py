@@ -67,7 +67,7 @@ solver = solvers.Reynolds_Solver(Example, BC, args)
 
 #------------------------------------------------------------------------------
 
-tests = 10  # N=2**k for k in k0+[0,tests)  
+tests = 8  # N=2**k for k in k0+[0,tests)  
 k_0=4           
                                                                                                                                                                                                           
 Ns = np.zeros(tests)
@@ -102,7 +102,7 @@ for k in range(tests):
     pwc_solution = solver.pwc_solve(N)
     pwl_solution = solver.pwl_solve(N)
     
-    # fd_bicg_solution = solver.fd_lu_solve(N)
+    fd_bicg_solution = solver.fd_lu_solve(N)
 
     
 #TODO: set exact solution
@@ -131,19 +131,19 @@ for k in range(tests):
     fd_times[k] = fd_solution.time
     pwc_schur_times[k] = pwc_solution.time
     pwl_schur_times[k] = pwl_solution.time
-    # fd_bicg_times[k] = fd_bicg_solution.time
+    fd_bicg_times[k] = fd_bicg_solution.time
     
 
 #------------------------------------------------------------------------------        
 # plot ||dp-dp*|| error
-# graphics.plot_log_multi([dP_err_fd, dP_err_pwc, dP_err_pwl], Ns, 'Convergence in $\Delta P$, absolute error', ['FD', 'PWC', 'PWL'], ['$N=1/\Delta x$', 'error'], loc='upper', bigO_on=True)
+graphics.plot_log_multi([dP_err_fd, dP_err_pwc, dP_err_pwl], Ns, 'Convergence in $\Delta P$, absolute error', ['FD', 'PWC', 'PWL'], ['$N=1/\Delta x$', 'error'], loc='upper', bigO_on=True)
 
 # plot ||p-p*|| error
 graphics.plot_log_multi([l2_err_fd, l2_err_pwc, l2_err_pwl], Ns, 'Convergence in $p$', ['FD', 'PWC', 'PWL'], ['$N=1/\Delta x$', '$||p-p_*||_2$'], loc='upper', bigO_on=True)
 
 # plot FD, PWC, PWL times (linear vs quadratic)
 graphics.plot_2D_multi([fd_times, pwc_schur_times, pwl_schur_times], Ns, 'Run Time', ['FD', 'PWC', 'PWL'], ['$N=1/\Delta x$', 'run time (s)'], loc='left')
-# graphics.plot_2D_multi([fd_times, fd_bicg_times, pwl_schur_times], Ns, 'Run Time', ['FD LU', 'FD biCG', 'PWL'], ['$N=1/\Delta x$', 'run time (s)'], loc='left')
+graphics.plot_2D_multi([fd_times, fd_bicg_times, pwl_schur_times], Ns, 'Run Time', ['FD LU', 'FD biCG', 'PWL'], ['$N=1/\Delta x$', 'run time (s)'], loc='upper')
 
 
 # plot PWL times only (linear)
